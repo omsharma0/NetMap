@@ -135,6 +135,8 @@ class Comment(CommonInfo):
 class SiteComment(Comment):
     comments = models.ForeignKey(Site, on_delete=models.PROTECT, related_name='sitecomments')
 
+class Thread():
+    pass
 
 class ClusterComment(Comment):
     comments = models.ForeignKey(Cluster, on_delete=models.PROTECT, related_name='clustercomments')
