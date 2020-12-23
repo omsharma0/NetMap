@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load myfilters %}
+{% csrf_token %}
+<div class="box-02" id="style-7">
+    <ul id="myUL">
+        <li><h3 style="text-decoration:underline">My Network</h3> </li>
+        {% for network in networkList %}
+                <li><span class="material-icons"> device_hub</span>
+                    <span class="caret"> {{ network.name }}</span> 
+            <ul class="nested">   
+            {% for site in siteList %}  
+              <li ><span class="material-icons"> apartment</span>
+              <span class="caret" onClick="getSiteDetail( `{{ site.id }}` )" > {{ site.name }}</span>
+                <ul class="nested">
+                  
+                  {% for cluster in site.id|clustersOfSite %}  
+                  <li >
+                    
+                    <button class="btn" onClick="getClusterDetail( `{{ cluster.id }}` )" >{{ cluster.name }}</button>
+                   
+                  </li>
+                   {% endfor %}
+                 
+                </ul></li>
+                
+            {% endfor %}
+          </ul></li>
+                {% endfor %}
+            </ul>
+      </div>
+      <div class="box-03" id="style-7">
+        <ul id="myUL1">
+        <ul class="elementList"> </ul>
+      </ul> 
+      </div>
+      <div class="box-04" id="style-7">
+        <ul class="NEDetail"> </ul>
+     </div>
+     <div class="box-05" id="style-7">
+      <div class="box-05-1" id="style-7">
+       <ul class="commentsSection"> </ul>
+      </div>
+      <div class="box-05-2" id="style-7">
+        <h4>New Update</h4>
+        <div class="box-form"></div>
+      </div>
+   </div>
+{% endblock %}

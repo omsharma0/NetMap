@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="{% static 'loginStyle.css' %}">
+    </head>
+<body >
+<form role="form", method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="container">
+      <h1>Register</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      {{form.username.errors}}  
+      <label for="username"><b>Username</b></label>
+      {{form.username}}
+
+      {{form.email.errors}}
+      <label for="email"><b>Email</b></label>
+      {{form.email}}
+  
+      {{form.password1.errors}}
+      <label for="psw"><b>Password</b></label>
+      {{form.password1}}
+  
+      {{form.password2.errors}}
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      {{form.password2}}
+      <hr>
+  
+      <button type="submit" class="registerbtn">Register</button>
+    </div>
+  
+    <div class="container signin">
+      <p>Already have an account? <a href="/accounts/login/">Sign in</a>.</p>
+    </div>
+  </form>
+</body>

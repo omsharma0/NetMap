@@ -1,0 +1,388 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+html,body {
+    height: 100%;
+    width: 100%;
+    font-size: 56.5%;
+    font-family: "Candara";
+}
+    
+   
+    .box-0 {
+        width: 100%;
+        height: 100%;
+        background:whitesmoke;
+        position: relative;
+     }
+
+.clear {
+    clear: both;
+}
+nav {
+    padding: 1rem 2rem;
+    background-color:whitesmoke;
+    color:black;
+
+}
+
+    nav ul {
+    float: right;
+    list-style: none;
+}
+
+div nav li {
+    float: left;
+    margin-left: 5rem;
+    font-size: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color:black;
+}
+
+
+
+    .intro {
+        position: absolute;
+        left: 5rem;
+        color:black;
+        padding-top: 0rem;
+        font-size: 1.8rem;
+        
+    }
+    
+    
+    .box-01 {
+        background-color:whitesmoke;
+        float: left;
+        margin: 50px;
+        height: 80%;
+        width: 10%;
+        position: absolute;
+        padding:10%
+     
+    }
+
+    .box-100 {
+      
+      border-bottom:1px dashed grey;
+      padding-bottom: 1%;
+            
+  }
+    .box-02 {
+        background-color:whitesmoke;
+        padding: 1rem;
+        margin-left: 5%;
+        margin-top: 1%;
+        top: 55px;
+        height: 85%;
+        width: 20%;
+        position: absolute;
+        font-size: 1.5rem;
+        border-right:1px dashed grey;
+        opacity: 70%;
+        overflow: scroll;
+
+    }
+    .box-03 {
+      background-color:whitesmoke;
+      padding-right: 2%;
+      margin-left: 25%;
+      margin-top: 1%;
+      top: 55px;
+      height:85%;
+      width: 20%;
+      position: absolute;
+      font-size: 1.5rem;
+      text-decoration:none;
+      border-right:1px dashed grey;
+      opacity: 70%;
+      overflow: scroll;
+  }
+  .box-04 {
+    background-color:whitesmoke;
+    padding: 0%;
+    margin-left: 45%;
+    margin-top: 1%;
+    top: 55px;
+    height: 85%;
+    width: 35%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-right:1px dashed grey;
+    opacity: 70%;
+    overflow: scroll;
+   }
+   .box-05 {
+    background-color:whitesmoke;
+    padding: 0%;
+    margin-left: 80%;
+    margin-top: 1%;
+    top: 55px;
+    height: 85%;
+    width: 18%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    opacity: 70%;
+   }
+   .box-05-1 {
+    background-color:whitesmoke;
+    padding: 0%;
+    margin-left: 0%;
+    margin-top: 0%;
+    top: 0px;
+    height: 60%;
+    width: 100%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    opacity: 70%;
+    overflow: scroll;
+   }
+   .box-05-2 {
+    background-color:whitesmoke;
+    padding: 3%;
+    margin-left: 2%;
+    margin-top: 115%;
+    top: 0px;
+    height: 45%;
+    width: 100%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-top:1px solid grey;
+    opacity: 90%;
+    overflow: scroll;
+   }
+    .box-10 {
+        left: 0px;
+        top: 5%;
+        height: 60px;
+        width: 90px;
+        position: absolute;
+       border: 2px solid black;
+    }
+    .box-11 {
+        left: 0px;
+        top: 25%;
+        height: 60px;
+        width: 90px;
+        position: absolute;
+       border: 2px solid black;
+    }
+    .box-12 {
+        left: 0px;
+        top: 45%;
+        height: 60px;
+        width: 90px;
+        position: absolute;
+       border: 2px solid black;
+    }
+    .box-13 {
+        left: 0px;
+        top: 65%;
+        height: 60px;
+        width: 90px;
+        position: absolute;
+       border: 2px solid black;
+    }
+    
+    button{
+    
+        top: 50%;
+        left:50%;
+        height: 100%;
+        width: 100%;
+        background: none;
+        border:0;
+        color:none;
+        font-size: 1.5rem;
+        font-family: inherit;
+            }
+
+    .onclick {
+        cursor: pointer;
+        user-select: none; /* Prevent text selection */
+            }
+/*tree view CSS*/
+/* Remove default bullets */
+ul, #myUL {
+    list-style-type: none;
+    padding-left: 2rem;
+    padding-bottom: 1.5rem;
+    text-decoration: none;
+  }
+  div li {
+    padding-top: 0.6rem;
+  }
+  
+  /* Remove margins and padding from the parent ul */
+  #myUL {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #myUL1 {
+    margin: 0;
+    padding: 0;
+  }
+  /* Style the caret/arrow */
+  .caret {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+  }
+  .caret2 {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+  }
+  
+  /* Create the caret/arrow with a unicode, and style it */
+  .caret::before {
+    content: "\3E";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .caret2::before {
+    content: "\3E";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  
+  /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+  .caret-down::before {
+    transform: rotate(90deg);
+  }
+  .caret2-down::before {
+    transform: rotate(90deg);
+  }
+  
+  /* Hide the nested list */
+  .nested {
+    display: none;
+  
+  }
+
+  .nested2 {
+    display: none;
+  
+  }
+  
+  /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+  .active {
+    display: block;
+
+  }
+  .active2 {
+    display: block;
+
+  }
+
+/* Style the buttons */
+.btn {
+  border:1px solid grey;
+  outline: grey;
+  padding: 5px 0px;
+  background-color:none;
+  cursor: pointer;
+  border-radius: 0px;
+}
+
+.btn1 {
+  border:1px solid grey;
+  outline: grey;
+  padding: 5px 10px;
+  background-color:none;
+  cursor: pointer;
+  border-radius: 0px;
+}
+
+/* Style the active class (and buttons on mouse-over) */
+.active1, .btn:hover {
+  background-color: #666;
+  color: white;
+}
+
+.active2, .btn1:hover {
+  background-color: #666;
+  color: white;
+}
+
+
+#NE {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#NE td, #NE th {
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 4px;
+}
+
+#NE tr:nth-child(even){background-color: #f2f2f2;}
+
+#NE tr:hover {background-color: #ddd;}
+
+#NE th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+#style-7::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.062);
+	background-color: #F5F5F5;
+}
+
+#style-7::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+#style-7::-webkit-scrollbar-thumb
+{
+	background-color: #5b38bb1a;
+}
+
+
+input[type=text], input[type=password], input[type=email] {
+  width: 100%;
+  padding: 8px;
+  margin: 0px 0 10px 0;
+  display: inline-block;
+  border: 1px solid gray;
+  background: white;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: white;
+  outline: none;
+}
+
+input[type=submit]{
+  margin-left: 40%;
+  
+}
+
+textarea {
+  width: 100%;
+  padding: 5px;
+  margin: 0px 0 10px 0;
+  display: inline-block;
+  border: 1px solid gray;
+  background: white;
+}
+/* Overwrite default styles of hr */

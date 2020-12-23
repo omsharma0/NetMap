@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+<body onload="createTreeView()">
+
+<div class="box-0">
+<div class="box-100">
+    <header>
+        <nav>
+            <section class="intro" >
+                <h2>Network Map</h2>
+                <h4 >A logical map of network</h4>
+            </section>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">My NEs</a></li>
+                <li><a href="/accounts/logout/">Logout</a></li>
+            </ul> 
+            <div class="clear"></div>
+        </nav>
+    </header>
+</div>  
+    <!-- <div class="box-01"> 
+        <div class="box-10"><button>View NE</button></div>
+        <div class="box-11"><button>Add NE</button></div>
+        <div class="box-12"><button>Export CxMx</button></div>
+        <div class="box-13"><button>Connect</button></div>
+    </div>-->
+    {% block content %}
+
+    {% endblock %}
+    
+    <script src="{% static 'treeview.js' %}"></script>
+    <script src="{% static 'callAPI.js' %}"></script>
+    <script src="{% static 'draw.js' %}"></script>
+    <!-- <script>getList('http://127.0.0.1:8000/api/getNEList/?site=FB01');</script> -->
+</div>
+
+</body>
+</html>
