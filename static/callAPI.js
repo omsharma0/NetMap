@@ -10,7 +10,7 @@ function getClusterDetail(cluster)
     .then((resp) => resp.json()) // Transform the data into json
     .then(function(cluster) {
         console.log(cluster);
-        cluster.neList.forEach(ne => {
+        cluster.clusterNEList.forEach(ne => {
         //console.log(element);  
         x =   `<li><button class="btn1"  onClick="getNEDetail( \`${ ne.id }\` )" > ${ne.name} : ${ne.product} ${ne.swRelease} </button></li>`
         HTML = HTML + x
@@ -44,7 +44,8 @@ function getNEDetail(NE)
     .then(function(NEDetail) {
     for (const [key, value] of Object.entries(NEDetail)){
     console.log(`${key}: ${value}`);
-      if(key=="interfaces")
+    var displayFields = ["name", "cluster", "networkFunction", "tenant"]
+    if(key=="interfaces")
       {
        x = `<tr><td>Interfaces:</td><td>`
           
@@ -61,21 +62,25 @@ function getNEDetail(NE)
       // console.log(interface.name);
                   
         })
-        x = x + "</td>"
+        x = x + "</td>";
+        HTML = HTML + x;
       }
-      if(key!="interfaces" && key!="id" && key!="necomments" )
+      else if(displayFields.includes(key) ){
+        
         x =  `<tr> <td> ${key}</td><td> ${value} </td></tr>`;
-
-      HTML = HTML + x;
+        HTML = HTML + x;
+      }
+      
+      console.log(`${key}`);
     
     }
-    ul.innerHTML = `<li><h3 style="text-decoration:underline">NE Details</h3></li>` + HTML + "</table>" + "<canvas></canvas>";
+    ul.innerHTML = `<li><h3 style="text-decoration:underline">NE Details</h3></li>` + HTML + "</table>";
     
     commentsFor = `NE ${NEDetail.name} Updates`
     showComments(NEDetail.necomments,commentsFor);
     setComments("/api/createNEComment/", NEDetail.id )
     createTreeView2();
-    drawNetwork(NEDetail);
+    drawNE(NEDetail);
     });
  
 }

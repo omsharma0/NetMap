@@ -1,7 +1,7 @@
 from django.db import models
 from rest_framework import serializers
 from django.conf import settings
-from cxmx.models import Cluster, ClusterComment, NEComment, Network, NetworkElement, NetworkFunction, Site, Interface, SiteComment
+from cxmx.models import Cluster, ClusterComment, NEComment, Network, NetworkElement, NetworkFunction, Site, Interface, SiteComment, Subnet
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -69,20 +69,32 @@ class networkFunctionSerializer(serializers.ModelSerializer):
     class Meta:
         model = NetworkFunction
         fields = ['id', 'name']
-        
+
+class subnetSerializer(serializers.ModelSerializer):
+    domain=serializers.StringRelatedField()
+    class Meta:
+        model = Subnet
+        fields = '__all__'
+
 class interfaceSerializer(serializers.ModelSerializer):
+    #subnets = subnetSerializer(read_only=True)
     class Meta:
         model = Interface
         fields = '__all__'
+        depth = 2
 
 
 class networkElementSerializer(serializers.ModelSerializer):
-    networkFunction_name = serializers.CharField(source='networkFunction.name')
+    networkFunction = serializers.StringRelatedField()
     interfaces = interfaceSerializer(many=True, read_only=True)
     necomments = NECommentShowSerializer(many=True, read_only=True)
+    cluster = serializers.StringRelatedField()
+    tenant = serializers.StringRelatedField()
+    #tenant = serializers.CharField(source='tenant.name')
+
     class Meta:
       model = NetworkElement
-      fields = ['id', 'name', 'swRelease', 'product','networkFunction_name', 'necomments', 'interfaces']
+      fields = ['id', 'name', 'cluster', 'swRelease', 'product','networkFunction', 'tenant', 'necomments', 'interfaces']
 
 
 class siteSerializer(serializers.ModelSerializer):
@@ -92,11 +104,11 @@ class siteSerializer(serializers.ModelSerializer):
         fields = ['id','name','sitecomments' ]
 
 class clusterSerializer(serializers.ModelSerializer):
-    neList = networkElementSerializer(many=True, read_only=True)
+    clusterNEList = networkElementSerializer(many=True, read_only=True)
     clustercomments = clusterCommentShowSerializer(many=True, read_only=True)
     clusters = serializers.CharField(source='site.name')
     class Meta:
         model = Cluster
-        fields = ['id','name','clusterType','clusters','neList','clustercomments']
+        fields = ['id','name','clusterType','clusters','clusterNEList','clustercomments']
 
 

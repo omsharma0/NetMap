@@ -1,0 +1,37 @@
+svg {
+    background-color: beige;
+    width: 100%;
+    height: 100%;
+  }
+
+  .NE{ 
+  fill:none;
+  stroke:rgb(29, 27, 28);
+  stroke-width:1;
+  fill-opacity:0.1;
+  stroke-opacity:0.9; 
+  }
+
+  .interfaceBox{ 
+    fill:whitesmoke;
+    stroke:rgb(29, 27, 28);
+    stroke-width:1;
+    fill-opacity:0.1;
+    stroke-opacity:0.9; 
+    }
+    
+  .NEText{ 
+    fill:rgba(34, 31, 31, 0.938)(26, 24, 24);
+ 
+    }
+
+.lineClass{
+    stroke:rgb(31, 28, 28);
+    stroke-width:1;
+}
+
+.dotClass{
+    fill:rgb(29, 27, 28);
+    stroke:rgb(17, 206, 58);
+    stroke-width:1;
+}

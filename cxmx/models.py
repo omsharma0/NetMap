@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
-from rest_framework.fields import JSONField
+from rest_framework.fields import BooleanField, JSONField
+from netfields import CidrAddressField, NetManager
 
 class CommonInfo(models.Model):
     created_at = models.DateTimeField(
@@ -31,13 +32,13 @@ class CommonInfo(models.Model):
 
 class CommonInfoNetwork(CommonInfo):
     name = models.CharField(max_length=40)
-    STATUS_OPTIONS = (
+    STATUS_OPTIONS = [
         ('DRAFT', 'Draft'),
         ('DRAFT-A', 'DraftApproved'),
         ('DEPLOYED', 'Deployed'),
         ('IN-SERVICE', 'InService'),
         ('OUT-OF-SERVICE', 'OutOfService'),
-    )
+    ]
 
     status = models.CharField(max_length=14, choices=STATUS_OPTIONS, default=STATUS_OPTIONS[0][0])
 
@@ -83,6 +84,10 @@ class Cluster(CommonInfoNetwork):
          return '%s  : %s' % (self.site.name, self.name)
 
 
+class Tenant(CommonInfoNetwork):
+    def __str__(self):
+         return self.name
+
 class NetworkFunction(CommonInfo):
      name = models.CharField(max_length=20)
      
@@ -100,29 +105,16 @@ class ReferencePoint(CommonInfo):
     
 class NetworkElement(CommonInfoNetwork):
     networkFunction = models.ForeignKey(NetworkFunction, on_delete=models.PROTECT,related_name='networkFunction_name')
-    cluster = models.ForeignKey(Cluster, on_delete=models.PROTECT,related_name='neList')
+    cluster = models.ForeignKey(Cluster, on_delete=models.PROTECT,related_name='clusterNEList')
     product = models.CharField(max_length=20)
     vendor = models.CharField(max_length=20, null=True, blank =True)
     swRelease = models.CharField(max_length=20, null=True, blank =True)
+    tenant = models.ForeignKey(Tenant, on_delete=models.PROTECT,related_name='tenantNEList')
+
     
 
     def __str__(self):
         return '%s  : %s %s' % (self.name, self.product, self.swRelease)
-
-class Interface(CommonInfoNetwork):
-    networkElement = models.ForeignKey(NetworkElement, on_delete=models.PROTECT,related_name='interfaces')
-    referencePoint = models.ForeignKey(ReferencePoint, on_delete=models.PROTECT, null=True, blank =True)
-    ipv4Address = models.GenericIPAddressField(protocol='IPv4', null=True, blank =True)
-    ipv6Address = models.GenericIPAddressField(protocol='IPv6', null=True, blank =True)
-    
-    def __str__(self):
-         return self.name
-  
-
-
-class Connection(CommonInfoNetwork):
-    interfaces = models.ManyToManyField(Interface)
-
 
 class Comment(CommonInfo):
     title = models.TextField(max_length=100)
@@ -141,3 +133,57 @@ class ClusterComment(Comment):
 
 class NEComment(Comment):
     comments = models.ForeignKey(NetworkElement, on_delete=models.PROTECT, related_name='necomments')
+
+#-----------------Overlay Design Models-------------------------------------------------------------
+
+class Domain(CommonInfoNetwork):
+   TYPES = [
+        ('L3', 'VRF'),
+        ('L2', 'R-VPLS')
+   ]
+   type = models.CharField(max_length=2, choices=TYPES, default=TYPES[0][0])
+
+   def __str__(self):
+         return self.name
+
+class Zone(CommonInfoNetwork):
+    domain = models.ForeignKey(Domain, on_delete=models.PROTECT, related_name='domainZones', limit_choices_to = {'type':'L3'})
+    def __str__(self):
+         return self.name
+
+class Net(CommonInfoNetwork):
+    TYPES = [
+        ('LOCAL', 'Local'),
+        ('VLAN', 'VLAN')
+   ]
+    type = models.CharField(max_length=5, choices=TYPES, default=TYPES[0][0])
+    providerPhysicalNetwork = models.CharField(max_length=40,null=True, blank =True)
+    providerSegementID=models.CharField(max_length=40,null=True, blank =True)
+    tenant = models.ForeignKey(Tenant, on_delete=models.PROTECT,related_name='tenantNetworks')
+    def __str__(self):
+         return self.name
+
+class Subnet(CommonInfoNetwork):
+    domain = models.ForeignKey(Domain, on_delete=models.PROTECT, related_name='domainSubnets')
+    zone = models.ForeignKey(Zone, on_delete=models.PROTECT, related_name='zoneSubnets',null=True, blank =True)
+    net = models.ForeignKey(Net, on_delete=models.PROTECT, related_name='netSubnets')
+    ipV4Net = CidrAddressField()
+    ipv6Net = CidrAddressField(null=True, blank =True)
+    objects = NetManager()
+    DHCP=BooleanField(default=False)
+
+    def __str__(self):
+         return '%s %s:%s' % (self.name, self.ipV4Net,self.ipv6Net)
+
+class Interface(CommonInfoNetwork):
+    networkElement = models.ForeignKey(NetworkElement, on_delete=models.PROTECT,related_name='interfaces')
+    referencePoint = models.ForeignKey(ReferencePoint, on_delete=models.PROTECT, null=True, blank =True)
+    ipv4Address = models.GenericIPAddressField(protocol='IPv4', null=True, blank =True)
+    ipv6Address = models.GenericIPAddressField(protocol='IPv6', null=True, blank =True)
+    subnet = models.ForeignKey(Subnet, on_delete=models.PROTECT,related_name='subnetInterfaces')
+    
+    def __str__(self):
+         return self.name
+
+class Connection(CommonInfoNetwork):
+    interfaces = models.ManyToManyField(Interface)
