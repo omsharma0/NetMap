@@ -134,7 +134,7 @@ nav a {
     overflow: scroll;
    }
    .box-04-2 {
-    background-color:rgb(168, 43, 43);
+    background-color:whitesmoke;
     padding: 0%;
     margin-left: 0%;
     margin-top: 50%;
@@ -144,7 +144,7 @@ nav a {
     position: absolute;
     font-size: 1.5rem;
     text-decoration:none;
-    border-top:1px solid grey;
+    border-top:1px dashed grey;
     opacity: 90%;
     overflow-y: scroll;
     overflow-x: hidden; 

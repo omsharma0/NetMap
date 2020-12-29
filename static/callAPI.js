@@ -80,7 +80,7 @@ function getNEDetail(NE)
     showComments(NEDetail.necomments,commentsFor);
     setComments("/api/createNEComment/", NEDetail.id )
     createTreeView2();
-    drawNE(NEDetail);
+    drawNE1(NEDetail);
     });
  
 }
