@@ -11,5 +11,8 @@ urlpatterns = [
     path('createSiteComment/', views.SiteComment.as_view()),
     path('createNEComment/', views.NEComment.as_view()),
     path('createClusterComment/', views.ClusterComment.as_view()),
+    path('getSubnets/', views.getSubnets.as_view()),
+    path('getSubnetDetail/<int:pk>/', views.SubnetDetail.as_view()),
+    path('createSubnetComment/', views.SubnetComment.as_view()),
     ]
 urlpatterns = format_suffix_patterns(urlpatterns)

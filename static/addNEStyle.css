@@ -1,0 +1,292 @@
+/****************** Styling for Add NE*******************************************/
+.box-10 {
+    background-color:none;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 0%;
+    margin-top: 10%;
+    top: 55px;
+    height:50%;
+    width: 20%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-right:1px solid grey;
+    opacity: 70%;
+    align-items: center;
+  }
+
+  .box-11 {
+    background-color:none;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 20%;
+    margin-top: 10%;
+    top: 55px;
+    height:50%;
+    width: 20%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-right:1px solid grey;
+    opacity: 70%;
+  }
+
+  .box-12 {
+    background-color:none;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 40%;
+    margin-top: 10%;
+    top: 55px;
+    height:50%;
+    width: 20%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-right:1px solid grey;
+    opacity: 70%;
+  }
+
+  .box-13 {
+    background-color:none;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 60%;
+    margin-top: 10%;
+    top: 55px;
+    height:50%;
+    width: 20%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-right:1px solid grey;
+    opacity: 70%;
+  }
+
+  .box-14 {
+    background-color:none;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 80%;
+    margin-top: 10%;
+    top: 55px;
+    height:50%;
+    width: 20%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-right:1px solid grey;
+    opacity: 70%;
+  }
+
+
+  .box-Xform {
+    background-color: none;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 0%;
+    margin-top: 1%;
+    top: 55px;
+    height:85%;
+    width: 22%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-right:1px solid grey;
+    opacity: 70%;
+    align-items: center;
+    overflow: scroll;
+  }
+  .box-list {
+    background-color: none;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 22%;
+    margin-top: 1%;
+    top: 55px;
+    height:85%;
+    width: 20%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-right:1px solid grey;
+    opacity: 70%;
+    align-items: center;
+    overflow: scroll;
+  }
+
+  .box-detail {
+    background-color:none;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 42%;
+    margin-top: 1%;
+    top: 55px;
+    height:85%;
+    width: 38%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    border-right:1px solid grey;
+    opacity: 70%;
+    align-items: center;
+    overflow: scroll;
+  }
+  
+  .box-updates {
+    background-color:none;
+    padding: 0%;
+    margin-left: 80%;
+    margin-top: 1%;
+    top: 55px;
+    height: 85%;
+    width: 18%;
+    position: absolute;
+    font-size: 1.5rem;
+    text-decoration:none;
+    opacity: 70%;
+  }
+  
+  
+.Xbutton {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #bac743cc;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+    width: 100%;
+    height: 30%;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .Xbutton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+  .Xbutton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .Xbutton:hover span {
+    padding-right: 25px;
+  }
+  
+  .Xbutton:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  img.avatar {
+    width: 40%;
+    border-radius: 30%;
+  }
+
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+
+  .Xbuttonform{
+      padding:0px;
+      height:60%;
+  }
+
+
+  #customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid rgb(87, 82, 82);
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers tr:hover {background-color: #ddd;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #5b665c2f;
+    color: rgb(95, 88, 88);
+  }
+
+
+
+
+  #snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: 0%; /* Divide value of min-width by 2 */
+    background-color: rgb(18, 180, 32); /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: absolute; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left:5%; /* Center the snackbar */
+    width: 30%;
+    top: 30px; /* 30px from the bottom */
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+
+
+  .errorlist
+    {
+        color: red;
+    }
+
+  .error input, .error select {
+      border: 2px red solid;
+      }

@@ -3,6 +3,12 @@
 {% block content %}
 {% load myfilters %}
 {% csrf_token %}
+<script>
+  function alertFunction() {
+    createTreeView();
+  }
+  window.onload = alertFunction;
+</script>
 <div class="box-02" id="style-7">
     <ul id="myUL">
         <li><h3 style="text-decoration:underline">My Network</h3> </li>

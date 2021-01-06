@@ -1,7 +1,6 @@
 function getClusterDetail(cluster)
 {
-    console.log(cluster)
-    var url = "http://127.0.0.1:8000/api/getClusterDetail/"+cluster
+    var url = "api/getClusterDetail/"+cluster
     console.log(url);
     const ul = document.querySelector('.elementList');
     var HTML = "";
@@ -11,8 +10,17 @@ function getClusterDetail(cluster)
     .then(function(cluster) {
         console.log(cluster);
         cluster.clusterNEList.forEach(ne => {
-        //console.log(element);  
-        x =   `<li><button class="btn1"  onClick="getNEDetail( \`${ ne.id }\` )" > ${ne.name} : ${ne.product} ${ne.swRelease} </button></li>`
+        console.log(ne);  
+        x =   `<li><div class="NEL"><div class = "inline"><button class="btn1"  onClick="getNEDetail( \`${ ne.id }\` )" > ${ne.name} : ${ne.product} ${ne.swRelease} </button></div>`
+        
+        switch(ne.status){
+          case "IN-SERVICE" :
+            x = x +`<div class = "inline1"><span style='color:lawngreen ; font-size:20px;'</span>&#9679  </div></div></li>`;
+            break;
+          case "DRAFT" :
+            x = x +`<div class = "inline1"><span style='color:grey ; font-size:20px;'</span>&#9679  </div></div></li>`;
+        }
+        
         HTML = HTML + x
     });
     ul.innerHTML = `<li><h3 style="text-decoration:underline">Network Elements</h3></li>` + HTML 
@@ -32,10 +40,13 @@ highlightButton();
 
 }
 
+
+//******************get NE Details ********************************* */
+
 function getNEDetail(NE)
 {
     console.log(NE)
-    var url = "http://127.0.0.1:8000/api/getNEDetail/"+NE;
+    var url = "api/getNEDetail/"+NE;
     const ul = document.querySelector('.NEDetail');
     var HTML = '<table id="NE">';
     var x ="";
@@ -44,7 +55,7 @@ function getNEDetail(NE)
     .then(function(NEDetail) {
     for (const [key, value] of Object.entries(NEDetail)){
     console.log(`${key}: ${value}`);
-    var displayFields = ["name", "cluster", "networkFunction", "tenant"]
+    var displayFields = ["name", "cluster", "networkFunction", "tenant", "created_by"]
     if(key=="interfaces")
       {
        x = `<tr><td>Interfaces:</td><td>`
@@ -85,6 +96,9 @@ function getNEDetail(NE)
  
 }
 
+
+//********************Get Site Details***********************************************/
+
 function getSiteDetail(site)
 {
     console.log(document.querySelector('[name=csrfmiddlewaretoken]').value)
@@ -101,6 +115,7 @@ function getSiteDetail(site)
                       <li>Name: ${SiteDetail.name}</li>`
                       
     commentsFor = `Site ${SiteDetail.name} Updates`
+    
     showComments(SiteDetail.sitecomments,commentsFor);
     setComments("/api/createSiteComment/", SiteDetail.id )
   })
@@ -108,6 +123,10 @@ function getSiteDetail(site)
 
 
 }
+
+
+
+//***********************Comments Sections ******************************************/
 
 function showComments(comments, commentsFor) {
   const ul = document.querySelector('.commentsSection');
@@ -124,6 +143,9 @@ function showComments(comments, commentsFor) {
   ul.innerHTML = `<h3 style="text-decoration:underline">${commentsFor}</h3>`+HTML
 
 }
+
+
+//***********************Set Comments ******************************************/
 
 function setComments(url, id) {
   const ul = document.querySelector('.box-form')

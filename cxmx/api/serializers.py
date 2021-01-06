@@ -1,7 +1,7 @@
 from django.db import models
 from rest_framework import serializers
 from django.conf import settings
-from cxmx.models import Cluster, ClusterComment, NEComment, Network, NetworkElement, NetworkFunction, Site, Interface, SiteComment, Subnet
+from cxmx.models import Cluster, ClusterComment, NEComment, Network, NetworkElement, NetworkFunction, Site, Interface, SiteComment, Subnet, SubnetComment
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -58,6 +58,20 @@ class NECommentShowSerializer(serializers.ModelSerializer):
       model = NEComment
       fields = ['id', 'created_at', 'created_by' ,'title', 'comment', 'comments']
 
+class SubnetCommentSerializer(serializers.ModelSerializer):
+    #created_by = serializers.SlugRelatedField(slug_field="username", queryset=User.objects.all())
+    created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())    
+    class Meta:
+      model = SubnetComment
+      fields = ['id', 'created_at', 'created_by' ,'title', 'comment', 'comments']
+
+class SubnetCommentShowSerializer(serializers.ModelSerializer):
+    created_by = serializers.SlugRelatedField(slug_field="username", queryset=User.objects.all())
+    #created_by = serializers.HiddenField(default=serializers.CurrentUserDefault())    
+    class Meta:
+      model = SubnetComment
+      fields = ['id', 'created_at', 'created_by' ,'title', 'comment', 'comments']
+
 # -----------------CommentSerializers END ----------------------------------------------------------
 
 class networkSerializer(serializers.ModelSerializer):
@@ -70,11 +84,22 @@ class networkFunctionSerializer(serializers.ModelSerializer):
         model = NetworkFunction
         fields = ['id', 'name']
 
-class subnetSerializer(serializers.ModelSerializer):
-    domain=serializers.StringRelatedField()
+class subnetDetailSerializer(serializers.ModelSerializer):
+    domain = serializers.StringRelatedField()
+    tenant = serializers.StringRelatedField()
+    zone = serializers.StringRelatedField()
+    net = serializers.StringRelatedField()
+    subnetComments = SubnetCommentShowSerializer(many=True, read_only=True)
+    created_by = serializers.SlugRelatedField(slug_field="username", queryset=User.objects.all())
     class Meta:
         model = Subnet
-        fields = '__all__'
+        fields = ['id', 'name', 'domain', 'net', 'zone', 'ipV4Net', 'ipv6Net', 'dhcp', 'tenant', 'status', 'subnetComments', 'created_by']
+
+class subnetListSerializer(serializers.ModelSerializer):
+    tenant = serializers.StringRelatedField()
+    class Meta:
+        model = Subnet
+        fields = ['id', 'name', 'ipV4Net', 'tenant', 'status']
 
 class interfaceSerializer(serializers.ModelSerializer):
     #subnets = subnetSerializer(read_only=True)
@@ -90,11 +115,12 @@ class networkElementSerializer(serializers.ModelSerializer):
     necomments = NECommentShowSerializer(many=True, read_only=True)
     cluster = serializers.StringRelatedField()
     tenant = serializers.StringRelatedField()
+    created_by = serializers.SlugRelatedField(slug_field="username", queryset=User.objects.all())
     #tenant = serializers.CharField(source='tenant.name')
 
     class Meta:
       model = NetworkElement
-      fields = ['id', 'name', 'cluster', 'swRelease', 'product','networkFunction', 'tenant', 'necomments', 'interfaces']
+      fields = ['id', 'name', 'cluster', 'swRelease', 'product','networkFunction', 'tenant', 'created_by', 'status', 'necomments', 'interfaces']
 
 
 class siteSerializer(serializers.ModelSerializer):

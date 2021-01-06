@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<script>
+    function alertFunction() {
+      showSubnets();
+      
+    }
+    window.onload = alertFunction;
+ </script>
+<div class="box-Xform" id="style-7">
+    
+    {% if messages %}
+    <div id="snackbar">
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    </div>
+    {% endif %}
+
+
+    <h2>Add New Subnet</h2>
+    <form  method="post">
+        {% csrf_token %}
+        <table id="customers">
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+
+</div>
+<div class="box-list", id="style-7">
+    <h2>Existing Subnets</h2>
+    <ul id="myUL1">
+        <ul id="subnetList"> </ul>
+      </ul> 
+</div>
+<div class="box-detail" id="style-7">
+    <h2>Subnets Details</h2>
+    <table id="NE"></table>
+    <form id="updateForm"></form>
+</div>
+
+<div class="box-updates">
+    <div class="box-05-1" id="style-7">
+        <ul class="commentsSection"> </ul>
+       </div>
+       <div class="box-05-2" id="style-7">
+         <h4>New Update</h4>
+         <div class="box-form"></div>
+       </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="box-10">
+    <div class="imgcontainer">
+    <img src="{% static '/images/CreateNE.png' %}" alt="Avatar" class="avatar">
+    </div>
+    <form action="/subnet/add/" calss="Xbuttonform">
+        <button type="submit" class="Xbutton" style="vertical-align:middle" onclick=""><span>Create NE</span></button>
+     </form>
+   
+</div>
+
+<div class="box-11">
+    <div class="imgcontainer">
+        <img src="{% static '/images/Subnet.png' %}" alt="Avatar" class="avatar">
+        </div>
+    <form action="https://www.w3docs.com/" calss="Xbuttonform">
+            <button type="submit" class="Xbutton" style="vertical-align:middle" onclick=""><span>Create Subnets</span></button>
+    </form>
+</div>
+
+<div class="box-12">
+    <div class="imgcontainer">
+        <img src="{% static '/images/Interface.png' %}" alt="Avatar" class="avatar">
+        </div>
+    <form action="https://www.w3docs.com/" calss="Xbuttonform">
+            <button type="submit" class="Xbutton" style="vertical-align:middle" onclick=""><span>Create Interfaces</span></button>
+    </form>
+</div>
+
+<div class="box-13">
+    <div class="imgcontainer">
+        <img src="{% static '/images/Connection.png' %}" alt="Avatar" class="avatar">
+        </div>
+    <form action="https://www.w3docs.com/" calss="Xbuttonform">
+            <button type="submit" class="Xbutton" style="vertical-align:middle" onclick=""><span>Connect NE</span></button>
+    </form>
+</div>
+
+<div class="box-14">
+    <div class="imgcontainer">
+        <img src="{% static '/images/Send.png' %}" alt="Avatar" class="avatar">
+        </div>
+    <form action="https://www.w3docs.com/" calss="Xbuttonform">
+            <button type="submit" class="Xbutton" style="vertical-align:middle" onclick=""><span>Send for Review</span></button>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

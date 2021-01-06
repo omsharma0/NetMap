@@ -134,6 +134,8 @@ class ClusterComment(Comment):
 class NEComment(Comment):
     comments = models.ForeignKey(NetworkElement, on_delete=models.PROTECT, related_name='necomments')
 
+
+
 #-----------------Overlay Design Models-------------------------------------------------------------
 
 class Domain(CommonInfoNetwork):
@@ -159,21 +161,25 @@ class Net(CommonInfoNetwork):
     type = models.CharField(max_length=5, choices=TYPES, default=TYPES[0][0])
     providerPhysicalNetwork = models.CharField(max_length=40,null=True, blank =True)
     providerSegementID=models.CharField(max_length=40,null=True, blank =True)
-    tenant = models.ForeignKey(Tenant, on_delete=models.PROTECT,related_name='tenantNetworks')
+    
     def __str__(self):
          return self.name
 
 class Subnet(CommonInfoNetwork):
     domain = models.ForeignKey(Domain, on_delete=models.PROTECT, related_name='domainSubnets')
     zone = models.ForeignKey(Zone, on_delete=models.PROTECT, related_name='zoneSubnets',null=True, blank =True)
-    net = models.ForeignKey(Net, on_delete=models.PROTECT, related_name='netSubnets')
-    ipV4Net = CidrAddressField()
-    ipv6Net = CidrAddressField(null=True, blank =True)
+    net = models.ForeignKey(Net, on_delete=models.PROTECT, related_name='netSubnets', null=True, default=1, verbose_name="Network")
+    dhcp = models.BooleanField(default=False)
+    ipV4Net = CidrAddressField(unique=True)
+    ipv6Net = CidrAddressField(null=True, blank =True,unique=True)
     objects = NetManager()
-    DHCP=BooleanField(default=False)
-
+    tenant = models.ForeignKey(Tenant, on_delete=models.PROTECT,related_name='tenantNetworks')
     def __str__(self):
          return '%s %s:%s' % (self.name, self.ipV4Net,self.ipv6Net)
+
+class SubnetComment(Comment):
+    comments = models.ForeignKey(Subnet, on_delete=models.PROTECT, related_name='subnetComments')
+
 
 class Interface(CommonInfoNetwork):
     networkElement = models.ForeignKey(NetworkElement, on_delete=models.PROTECT,related_name='interfaces')
@@ -187,3 +193,6 @@ class Interface(CommonInfoNetwork):
 
 class Connection(CommonInfoNetwork):
     interfaces = models.ManyToManyField(Interface)
+
+
+

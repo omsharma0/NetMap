@@ -7,9 +7,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'SVGstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'addNEStyle.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
-<body onload="createTreeView()">
+<body>
+
 
 <div class="box-0">
 <div class="box-100">
@@ -20,9 +22,11 @@
                 <h4 >A logical map of network</h4>
             </section>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">My NEs</a></li>
-                <li><a href="/accounts/logout/">Logout</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/addNE/">Add NE</a></li>
+                <li><a href="/accounts/logout/">{{request.user.username}}</a>
+                    <a>Logout</a></li>
+
             </ul> 
             <div class="clear"></div>
         </nav>
@@ -41,6 +45,8 @@
     <script src="{% static 'treeview.js' %}"></script>
     <script src="{% static 'callAPI.js' %}"></script>
     <script src="{% static 'draw.js' %}"></script>
+    <script src="{% static 'addNE.js' %}"></script>
+    <script src="{% static 'snackBar.js' %}"></script>
     <!-- <script>getList('http://127.0.0.1:8000/api/getNEList/?site=FB01');</script> -->
 </div>
 
